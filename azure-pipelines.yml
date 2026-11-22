@@ -1,0 +1,19 @@
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.13'
+
+  - script: |
+      python -m pip install --upgrade pip
+      pip install flask pytest
+    displayName: Install dependencies
+
+  - script: |
+      python -m pytest -v
+    displayName: Run automated tests
